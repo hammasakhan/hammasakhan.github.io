@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hammasa Khan | UI/UX & Graphic Designer</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-neutral: #f4f4f4;
+            --wix-dark: #000000;
+            --btn-orange: #e5a93b;
+            --btn-red: #f34e32;
+            --btn-teal: #7bcbc4;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-neutral);
+            color: var(--wix-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header / Navigation bar mimicking the minimalist Wix header */
+        .wix-header {
+            padding: 30px 50px;
+            background-color: transparent;
+        }
+        .wix-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .wix-dot {
+            width: 16px;
+            height: 16px;
+            background-color: var(--btn-orange);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .wix-nav-link {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        .wix-nav-link:hover {
+            opacity: 0.6;
+        }
+        .wix-nav-link.active {
+            font-weight: 700;
+            border-bottom: 2px solid #000;
+        }
+
+        /* View Content Management (Tab switching alternative) */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .page-view.active-view {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Homepage Layout mimicking image_689fa3.jpg precisely */
+        .hero-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+        
+        /* Large Profile Circle from image_689fa3.jpg */
+        .profile-circle-container {
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            background-color: #d8d8d8; /* Placeholder color before user links local image */
+            background-image: url('profile-pic.jpg'); /* Users can swap file path easily */
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto;
+            box-shadow: 0px 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .hero-text-side {
+            padding-left: 40px;
+        }
+        .hero-title {
+            font-size: 5.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+        .hero-subtitle {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .hero-description {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #333;
+            max-width: 480px;
+            margin-bottom: 35px;
+        }
+
+        /* Big Navigation Circles from image_689fa3.jpg */
+        .wix-circle-btn {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #000000;
+            text-decoration: none;
+            border: 1px solid rgba(0,0,0,0.8);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .wix-circle-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+            color: #000000;
+        }
+        .bg-orange { background-color: var(--btn-orange); }
+        .bg-red { background-color: var(--btn-red); }
+        .bg-teal { background-color: var(--btn-teal); }
+
+        /* Interior Page Container Setup */
+        .inner-page-container {
+            max-width: 900px;
+            margin: 40px auto 100px auto;
+            background: #ffffff;
+            padding: 60px 50px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 30px rgba(0,0,0,0.03);
+        }
+        .page-header-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Resume Content Component Formatting */
+        .resume-section-heading {
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            margin-top: 20px;
+        }
+        .timeline-block {
+            margin-bottom: 30px;
+        }
+        .timeline-year {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--btn-red);
+        }
+        .timeline-role {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 2px;
+        }
+        .timeline-company {
+            font-weight: 500;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .skill-chip {
+            background-color: #eee;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Wix Contact Form Fields Styling */
+        .wix-form-control {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid #000000;
+            border-radius: 0;
+            padding: 12px 4px;
+            font-size: 0.95rem;
+        }
+        .wix-form-control:focus {
+            background-color: transparent;
+            border-color: var(--btn-teal);
+            box-shadow: none;
+        }
+        .wix-submit-btn {
+            background-color: var(--btn-teal);
+            color: #000;
+            font-weight: 700;
+            border: 2px solid #000;
+            padding: 12px 40px;
+            border-radius: 0;
+            transition: all 0.2s;
+        }
+        .wix-submit-btn:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Contact Details Layout */
+        .contact-info-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .contact-info-text i {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Sticky Minimalist Wix Footer */
+        footer {
+            margin-top: auto;
+            background-color: #ffffff;
+            border-top: 1px solid #e1e1e1;
+            padding: 20px 50px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive UI Optimization */
+        @media (max-width: 991.98px) {
+            .hero-text-side {
+                padding-left: 0;
+                text-align: center;
+                margin-top: 30px;
+            }
+            .hero-title {
+                font-size: 4rem;
+            }
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .profile-circle-container {
+                width: 300px;
+                height: 300px;
+            }
+            .inner-page-container {
+                padding: 30px 20px;
+                margin: 20px 15px;
+            }
+            .wix-header {
+                padding: 20px;
+                text-align: center;
+            }
+            .wix-header .row {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .wix-header .text-end {
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP HEADER LAYER -->
+    <header class="wix-header">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-6 wix-logo-group justify-content-center justify-content-lg-start">
+                    <span class="wix-dot" id="header-dot"></span>
+                    <span class="fw-bold fs-4 tracking-tight wix-nav-link" onclick="switchView('home')">HAMMASA KHAN</span>
+                    <span class="text-muted fs-6 d-none d-sm-inline">| UI/UX & Graphic Designer</span>
+                </div>
+                <div class="col-lg-6 text-end mt-3 mt-lg-0">
+                    <nav class="d-flex justify-content-center justify-content-lg-end gap-4">
+                        <span class="wix-nav-link active" id="nav-home" onclick="switchView('home')">Home</span>
+                        <span class="wix-nav-link" id="nav-resume" onclick="switchView('resume')">Resume</span>
+                        <span class="wix-nav-link" id="nav-projects" onclick="switchView('projects')">Projects</span>
+                        <span class="wix-nav-link" id="nav-contact" onclick="switchView('contact')">Contact</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN VIEWS INTERCHANGE CONTAINER -->
+    <main class="flex-grow-1">
+
+        <!-- 1. HOME VIEW (Matches layout of image_689fa3.jpg exactly) -->
+        <div id="view-home" class="page-view active-view">
+            <div class="hero-container">
+                <div class="row align-items-center">
+                    <!-- Left Side: Large Portrait Circle Element -->
+                    <div class="col-lg-5 text-center">
+                        <div class="profile-circle-container">
+                            <!-- Inside here will render your background profile image -->
+                        </div>
+                    </div>
+                    <!-- Right Side: Hello & Rounded Navigational Controls -->
+                    <div class="col-lg-7 hero-text-side">
+                        <h1 class="hero-title">Hello</h1>
+                        <h3 class="hero-subtitle">A Bit About Me</h3>
+                        <p class="hero-description">
+                            Creative and detail-oriented UI/UX & Graphic Designer with over 5 years of hands-on experience crafting user-centric web, mobile, and digital experiences[cite: 1]. I excel at translating user insights into beautiful, functional visual systems[cite: 1].
+                        </p>
+                        
+                        <!-- The Circle Navigation row from image_689fa3.jpg -->
+                        <div class="d-flex flex-wrap gap-4 justify-content-center justify-content-lg-start">
+                            <span onclick="switchView('resume')" class="wix-circle-btn bg-orange">Resume</span>
+                            <span onclick="switchView('projects')" class="wix-circle-btn bg-red">Projects</span>
+                            <span onclick="switchView('contact')" class="wix-circle-btn bg-teal">Contact</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. RESUME VIEW (Loads explicitly when clicking "Resume" circle/link) -->
+        <div id="view-resume" class="page-view">
+            <div class="inner-page-container">
+                <div class="page-header-title">
+                    <span class="wix-dot" style="background-color: var(--btn-orange);"></span>
+                    Resume
+                </div>
+                
+                <div class="row">
+                    <!-- Experience & Education columns -->
+                    <div class="col-md-8">
+                        <h4 class="resume-section-heading">Professional Experience</h4>
+                        
+                        <!-- Job 1 -->
+                        <div class="timeline-block">
+                            <div class="timeline-year">January 2021 - Present</div>
+                            <div class="timeline-role">Senior UI/UX Designer</div>
+                            <div class="timeline-company">Hashgreed | Remote (Part-time)</div>
+                            <p class="small text-muted">
+                                Spearhead the complete UI/UX revamp of Africa's first NFT marketplace and digital wallet, enhancing user engagement and brand perception across digital touchpoints[cite: 1]. Design and implement a scalable design system in Figma, streamlining workflows by 40%[cite: 1]. Mentor a team of designers establishing UX best practices[cite: 1].
+                            </p>
+                        </div>
+
+                        <!-- Job 2 -->
+                        <div class="timeline-block">
+                            <div class="timeline-year">March 2021 - June 2025</div>
+                            <div class="timeline-role">UI/UX & Graphic Designer</div>
+                            <div class="timeline-company">Technodigg | Remote</div>
+                            <p class="small text-muted">
+                                Designed data-driven digital experiences for global e-commerce and SaaS platforms[cite: 1]. Created responsive layouts, UI kits, color palettes, and motion design prototypes using Figma and After Effects[cite: 1]. Managed feedback loops and assets for seamless developer handoffs[cite: 1].
+                            </p>
+                        </div>
+
+                        <!-- Job 3 -->
+                        <div class="timeline-block">
+                            <div class="timeline-year">November 2019 - November 2020</div>
+                            <div class="timeline-role">Graphic Designer</div>
+                            <div class="timeline-company">Basecamp Data Solutions | Pakistan</div>
+                            <p class="small text-muted">
+                                Executed visual content for marketing collateral, presentation decks, and infographics[cite: 1]. Assisted in company rebranding initiatives optimizing typography balance and layout hierarchy[cite: 1].
+                            </p>
+                        </div>
+
+                        <!-- Job 4 -->
+                        <div class="timeline-block">
+                            <div class="timeline-year">June 2019 - October 2019</div>
+                            <div class="timeline-role">Junior Graphic Designer</div>
+                            <div class="timeline-company">Gexton | Pakistan</div>
+                            <p class="small text-muted">
+                                Supported design teams creating web banners and digital layouts[cite: 1]. Refined assets utilizing Photoshop, Illustrator, and CorelDRAW under strict layout guidelines[cite: 1].
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Side block for skills & ed -->
+                    <div class="col-md-4 ps-md-4">
+                        <h4 class="resume-section-heading">Education</h4>
+                        <div class="mb-4">
+                            <div class="fw-bold">BS in Software Engineering</div>
+                            <div class="small text-muted">University of Sindh, Pakistan</div>
+                            <div class="small fw-semibold text-dark">GPA: 3.4/4.0 | 2018</div>
+                        </div>
+
+                        <h4 class="resume-section-heading">Core Skills</h4>
+                        <div class="mb-2">
+                            <span class="skill-chip">UI/UX Design</span>
+                            <span class="skill-chip">Visual Design</span>
+                            <span class="skill-chip">Wireframing</span>
+                            <span class="skill-chip">Design Systems</span>
+                            <span class="skill-chip">Branding</span>
+                            <span class="skill-chip">Motion Graphics</span>
+                            <span class="skill-chip">Video Editing</span>
+                        </div>
+
+                        <h4 class="resume-section-heading">Tools</h4>
+                        <div>
+                            <span class="skill-chip">Figma</span>
+                            <span class="skill-chip">Adobe Suite</span>
+                            <span class="skill-chip">CorelDRAW</span>
+                            <span class="skill-chip">Canva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. PROJECTS VIEW -->
+        <div id="view-projects" class="page-view">
+            <div class="inner-page-container">
+                <div class="page-header-title">
+                    <span class="wix-dot" style="background-color: var(--btn-red);"></span>
+                    Projects
+                </div>
+                <p class="text-muted mb-5">A brief overview of key products and design structures developed across my career portfolio timeline.</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="p-4 border border-dark rounded-0 h-100 bg-light">
+                            <h5 class="fw-bold">NFT Platform (Hashgreed & Hash Pay)</h5>
+                            <p class="small text-muted mt-2">Designed total user flows and mobile marketplace interfaces from early wireframe drafts to the finished aesthetic output[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4 border border-dark rounded-0 h-100 bg-light">
+                            <h5 class="fw-bold">E-Commerce Platforms & Layouts</h5>
+                            <p class="small text-muted mt-2">Engineered responsive dashboard panels and Shopify assets optimizing layouts around accessibility principles[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="p-4 border border-dark rounded-0 bg-light">
+                            <h5 class="fw-bold">Brand Identity & Multimedia Content</h5>
+                            <p class="small text-muted mt-2 mb-0">Developed uniform corporate design guides, dynamic infographics, social asset grids, and motion design loops for product marketing initiatives[cite: 1].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="https://drive.google.com/drive/u/2/folders/1V9OdQ991jQgBhZJZ3dMEk-HQWrCW12W" target="_blank" class="wix-submit-btn text-decoration-none">Explore Shared Drive Portfolio</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. CONTACT VIEW (Loads explicitly when clicking "Contact" circle/link) -->
+        <div id="view-contact" class="page-view">
+            <div class="inner-page-container">
+                <div class="page-header-title">
+                    <span class="wix-dot" style="background-color: var(--btn-teal);"></span>
+                    Contact
+                </div>
+
+                <div class="row g-5">
+                    <!-- Left side: Contact Information Details -->
+                    <div class="col-md-5">
+                        <p class="text-muted mb-4">Looking forward to hearing from you! Reach out via phone, email, or connect through social media profiles.</p>
+                        
+                        <div class="contact-info-text">
+                            <i class="bi bi-telephone-fill"></i>
+                            <strong>Phone:</strong> <br><span class="text-muted ms-4">+92 344 221 2190</span>
+                        </div>
+                        <div class="contact-info-text">
+                            <i class="bi bi-envelope-fill"></i>
+                            <strong>Email:</strong> <br><span class="text-muted ms-4"><a href="mailto:hammasak6@gmail.com" class="text-dark text-decoration-none">hammasak6@gmail.com</a></span>
+                        </div>
+                        <div class="contact-info-text">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <strong>Location:</strong> <br><span class="text-muted ms-4">Hyderabad, Pakistan</span>
+                        </div>
+
+                        <div class="mt-4 pt-2">
+                            <a href="https://www.linkedin.com/in/hammasa-khan-36160817a/" target="_blank" class="wix-submit-btn text-decoration-none d-inline-block">
+                                <i class="bi bi-linkedin me-2"></i>LinkedIn Profile
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right side: Precise Wix Structural Form Layout -->
+                    <div class="col-md-7">
+                        <form action="#" onsubmit="event.preventDefault(); alert('Message simulation sent successfully!');">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">First Name</label>
+                                    <input type="text" class="form-control wix-form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Last Name</label>
+                                    <input type="text" class="form-control wix-form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Email *</label>
+                                    <input type="email" class="form-control wix-form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Subject</label>
+                                    <input type="text" class="form-control wix-form-control">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Message</label>
+                                    <textarea class="form-control wix-form-control" rows="4"></textarea>
+                                </div>
+                                <div class="col-12 pt-3">
+                                    <button type="submit" class="btn wix-submit-btn w-100">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER LAYER -->
+    <footer class="d-flex flex-wrap justify-content-between align-items-center">
+        <div>&copy; 2026 by Hammasa Khan. Dedicated Portfolio Design.</div>
+        <div class="d-flex gap-3 fs-5 mt-2 mt-sm-0">
+            <a href="https://www.linkedin.com/in/hammasa-khan-36160817a/" target="_blank" class="text-dark"><i class="bi bi-linkedin"></i></a>
+            <a href="mailto:hammasak6@gmail.com" class="text-dark"><i class="bi bi-envelope"></i></a>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Wix Simulation View Switcher Script -->
+    <script>
+        function switchView(viewId) {
+            // Hide all sub-views instantly
+            const views = document.querySelectorAll('.page-view');
+            views.forEach(view => {
+                view.classList.remove('active-view');
+            });
+
+            // Remove active accent indicators from navigation items
+            const navLinks = document.querySelectorAll('.wix-nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Handle switching colors for header badge accent conditionally based on page state
+            const dot = document.getElementById('header-dot');
+            if(viewId === 'home') dot.style.backgroundColor = 'var(--btn-orange)';
+            if(viewId === 'resume') dot.style.backgroundColor = 'var(--btn-orange)';
+            if(viewId === 'projects') dot.style.backgroundColor = 'var(--btn-red)';
+            if(viewId === 'contact') dot.style.backgroundColor = 'var(--btn-teal)';
+
+            // Activate specific selected content window panel
+            document.getElementById('view-' + viewId).classList.add('active-view');
+            
+            // Set nav item highlighted
+            const targetNavLink = document.getElementById('nav-' + viewId);
+            if(targetNavLink) {
+                targetNavLink.classList.add('active');
+            }
+
+            // Instantly push window scroll position back to top cleanly
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
