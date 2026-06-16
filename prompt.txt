@@ -1,0 +1,56 @@
+✅ PROMPT TO RESUME WORK
+
+I am building a personal UI/UX designer portfolio website using single-file HTML + CSS only (no JS unless necessary). The design style is:
+
+Awwwards / Framer / high-end studio portfolio inspired
+Editorial, minimal but experimental
+Strong typography hierarchy
+Orange accent color: #ff5a36
+Grayscale imagery with hover reveal color
+Irregular / organic shapes (morphing border-radius)
+Subtle motion, not flashy
+Anti-basic-grid design (no boring portfolio cards)
+CURRENT PROGRESS:
+
+I already have completed:
+
+Hero section
+Split layout
+Large typography name
+Irregular morphing image frame with orange offset accent
+About section
+Editorial layout
+Floating micro UI elements
+Glass metric cards
+Skills marquee strip
+Featured Work / Selected Work section (DONE)
+Editorial case study layout (NOT grid)
+Alternating image + content rows
+Irregular morphing image shapes
+Hover transitions (grayscale → color, shape morphing)
+Clean studio-level aesthetic
+WHAT I WANT NEXT:
+
+Continue building the next section of the portfolio website.
+
+Before generating code, you should:
+
+Maintain design consistency with previous sections
+Keep it experimental and studio-level (not template-like)
+Avoid basic layouts (no simple grids or cards unless highly stylized)
+Use modern CSS techniques (flex/grid, transitions, hover effects)
+Keep it single-file HTML + CSS ready
+OUTPUT FORMAT I WANT:
+FULL HTML for the new section
+FULL CSS for the new section only
+Copy-paste ready
+No explanations unless necessary
+DESIGN DIRECTION REMINDER:
+
+Everything should feel like a high-end designer portfolio case study site, similar to:
+
+experimental agency websites
+Framer showcases
+Awwwards minimal interactive sites
+
+Now continue the website by creating the next section after Featured Work.
